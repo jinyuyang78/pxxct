@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta content="width=device-width, minimum-scale=1,initial-scale=1, maximum-scale=1, user-scalable=1;" id="viewport" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>烹小鲜一岁啦！</title>
+    <link href="css/css.css" rel="stylesheet" type="text/css">
+    <script src="js/jq-1.7-2.min.js" language="javascript"></script>
+    <script src="js/jq.touchswiper.js" language="javascript"></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+    <script src="js/index_wx.js"></script>
+
+    <script>
+        var sw=$(window).width();
+        var sh=$(window).height();
+        var b=640/960;
+        $("html").css("zoom",sw/640);
+        $(window).resize(function(){
+            sw=$(window).width();
+            $("html").css("zoom",sw/640);
+        });
+        function init(){
+            var ch=$(".touchslider").height();
+            $(".section").css("height",ch);
+            $(window).scroll(scr);
+        }
+        function scr(){
+            var n=$(window).scrollTop();
+            $(".pi").each(function(index, element) {
+                var t=$(this).offset().top-100;
+                if((n+sh)>=t){
+                    $(this).addClass("active");
+                }
+            });
+        }
+
+        var loadImg = function(pics, callback){
+            var index = 0;
+            var len = pics.length;
+            var img = new Image();
+            var flag = false;
+            var progress = function(w){
+                $('.loading-progress').stop().animate({width:w});
+                $(".loading_wrap b").text(w);
+            };
+            var load = function(){
+                img.src = pics[index];
+                img.onload = function() {
+                    progress(Math.floor(((index + 1) / len) * 100) + "%");
+                    index ++ ;
+                    if (index < len) {
+                        load();
+                    }else{
+                        callback()
+                    }
+                };
+                return img;
+            };
+            if(len > 0){
+                load();
+            }else{
+                progress("100%");
+            }
+            return {
+                pics: pics,
+                load: load,
+                progress: progress
+            };
+        };
+        var pics = ['images/a1.jpg','images/dy1.png','images/dy2.png','images/dy3.png','images/dy4.png',
+            'images/dy5.png','images/dy6.png','images/dy7.png','images/dy8.png','images/dy9.png','images/ewm.png',
+            'images/footlogo.png','images/logo.jpg','images/logowz.png','images/nr1.jpg','images/nr2.jpg','images/nr3.jpg',
+            'images/nr4.jpg','images/nr5.png','images/qk1.jpg','images/qk2.jpg','images/qk3.jpg','images/qk4.jpg',
+            'images/qk5.jpg','images/qk6.jpg','images/qk7.png','images/qk8.png','images/ry1.jpg',
+            'images/ry2.jpg','images/t1.png','images/t2.png','images/t4.png','images/t9.png','images/t10.jpg',
+            'images/t12.jpg','images/t13.jpg','images/t14.jpg','images/t15.jpg','images/w1.jpg','images/w2.jpg',
+            'images/w3.jpg','images/w4.jpg','images/w5.jpg','images/wk.png','images/wz.png','images/yy1.jpg',
+            'images/yy2.jpg','images/yy3.jpg','images/yy4.jpg','images/yy5.jpg','images/yy6.jpg','images/yy7.jpg',
+            'images/yy8.jpg','images/yy9.jpg','images/yy10.jpg','images/micclo.png','images/micop.png'];
+        loadImg(pics, function(){
+            setTimeout(function(){
+                $(".mask").hide();
+                $(".touchslider").fadeIn(1,function(){
+                    $(".section").eq(0).addClass("active");
+                    init();
+                    scr();
+                });
+            }, 1000);
+        });
+
+    $(function(){
+        //背景音乐
+        var ms=$(".bgMuisc");
+        ms[0].play();
+        var sta=1;
+        $(".mic").on("click",function muisc(){
+            if(sta==1){
+                sta=0;
+                $(".mic").addClass("micclo");
+                ms[0].pause();
+            }else{
+                sta=1;
+                $(".mic").removeClass("micclo");
+                ms[0].play();
+            }
+        });
+    })
+
+    </script>
+    <script src="chrome-extension://oofgjnalpjodkfmfomihdlchiiacnman/injectScripts.min.js"></script></head>
+<body style="background-color: #f1efe3">
+<div id="wx_pic" style="margin:0 auto;display:none;">
+    <img src="images/logo.jpg">
+</div>
+
+<div class="mask">
+    <div class="loading_wrap"><img src="images/footlogo.png"><br><br>
+        <div class="loading"><span class="loading-progress"></span></div><br><br><br>
+        正在加载… <b></b></div>
+</div>
+<a class="mic">
+
+</a>
+<audio class="bgMuisc" loop="loop"><source src="mic.mp3" type="audio/mpeg"></audio>
+<div class="touchslider">
+
+    <div class="touchslider-item">
+        <div class="p0 section ">
+            <div class="pi pr t1 flash"></div>
+            <div class="pi pr t2 flash "></div>
+            <div class="pi wp3">
+                <div class="pr flash w17"><img src="images/dy1.png"></div>
+                <div class="pr flash w18"><img src="images/dy2.png"></div>
+                <div class="pr flash w19"><img src="images/dy3.png"></div>
+                <div class="pr flash w20"><img src="images/dy4.png"></div>
+                <div class="pr flash w21"><img src="images/dy5.png"></div>
+                <div class="pr flash w22"><img src="images/dy6.png"></div>
+                <div class="pr flash w23"><img src="images/dy7.png"></div>
+                <div class="pr flash w24"><img src="images/dy8.png"></div>
+                <div class="pr flash w25"><img src="images/dy9.png"></div>
+            </div>
+
+            <div class="pi pr t3 flash "></div>
+
+        </div>
+    </div>
+
+
+    <div class="touchslider-item bg1" style="height: 720px">
+        <div class="p1 section" >
+            <div class="pi pr t1 flash "></div>
+            <div class="pi pr t5 flash "><div class="t6 flash"></div></div>
+
+            <div class="pi pr t3 flash "></div>
+        </div>
+
+    </div>
+
+    <div class="touchslider-item b2">
+        <div class="section p2" style="position: relative">
+            <div class="pi pr t1 flash "></div>
+            <div class="flash pi1">
+            <div class="pi yy1 flash "><img src="images/yy1.jpg" class="img"></div>
+            <div class="pi yy2 flash "><img src="images/yy2.jpg" class="img"></div>
+            <div class="pi yy3 flash "><img src="images/yy3.jpg" class="img"></div>
+            <div class="pi yy4 flash "><img src="images/yy4.jpg" class="img"></div>
+            <div class="pi yy5 flash "><img src="images/yy5.jpg" class="img"></div>
+            <div class="pi yy6 flash "><img src="images/yy6.jpg" class="img"></div>
+            <div class="pi yy7 flash "><img src="images/yy7.jpg" class="img"></div>
+            <div class="pi yy8 flash "><img src="images/yy8.jpg" class="img"></div>
+            <div class="pi yy9 flash "><img src="images/yy9.jpg" class="img"></div>
+            <div class="pi yy10 flash "><img src="images/yy10.jpg" class="img"></div>
+            <div class="pi pr t3 flash "></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="touchslider-item bg3">
+        <div class="p3 section">
+            <div class="pi pr t1 flash"></div>
+            <div class="pi wp1">
+                <div class="pr flash w1"><img src="images/w1.jpg"></div>
+                <div class="pr flash w2"><img src="images/w2.jpg"></div>
+                <div class="pr flash w3"><img src="images/w3.jpg"></div>
+                <div class="pr flash w4"><img src="images/w4.jpg"></div>
+                <div class="pr flash w5"><img src="images/w5.jpg"></div>
+            </div>
+
+            <div class="pi pr t3 flash  active"></div>
+        </div>
+    </div>
+
+    <div class="touchslider-item bg4">
+    <div class="p5 section" style="position: relative">
+        <div class="pi pr t1 flash "></div>
+        <div class="pi nr1 flash "><img src="images/nr1.jpg" class="img"></div>
+        <div class="pi nr2 flash "><img src="images/nr2.jpg" class="img"></div>
+        <div class="pi nr3 flash "><img src="images/nr3.jpg" class="img"></div>
+        <div class="pi nr4 flash "><img src="images/nr4.jpg" class="img"></div>
+        <div class="pi nr5 flash "><img src="images/nr5.png" class="img"></div>
+        <div class="pi pr t3 flash "></div>
+    </div>
+</div>
+
+
+    <div class="touchslider-item bg5">
+        <div class="p6 section" style="position: relative">
+            <div class="pi pr t1 flash "></div>
+            <div class="pi qk1 flash "><img src="images/qk1.jpg" class="img"></div>
+            <div class="pi qk2 flash "><img src="images/qk2.jpg" class="img"></div>
+            <div class="pi qk3 flash "><img src="images/qk3.jpg" class="img"></div>
+            <div class="pi qk4 flash "><img src="images/qk4.jpg" class="img"></div>
+            <div class="pi qk5 flash "><img src="images/qk5.jpg" class="img"></div>
+            <div class="pi qk6 flash "><img src="images/qk6.jpg" class="img"></div>
+            <div class="pi qk7 flash "><img src="images/qk7.png" class="img"></div>
+            <div class="pi qk8 flash "><img src="images/qk8.png" class="img"></div>
+            <div class="pi pr t3 flash "></div>
+        </div>
+    </div>
+
+    <div class="touchslider-item bg7">
+        <div class="p7 section" style="position: relative">
+            <div class="pi pr t1 flash "></div>
+            <div class="pi ry1 flash "><img src="images/ry1.jpg" class="img"></div>
+            <div class="pi ry2 flash "><img src="images/ry2.jpg" class="img"></div>
+            <div class="pi pr t3 flash "></div>
+        </div>
+    </div>
+
+    <div class="touchslider-item bg8">
+        <div class="p8 section" style="position: relative">
+            <div class="pi pr t1 flash "></div>
+            <div class="pi ewm flash "><img src="images/ewm.png" class="img"></div>
+            <div class="pi wk flash "><img src="images/wk.png" class="img"></div>
+            <div class="pi wk2 flash "><img src="images/wk.png" class="img"></div>
+            <div class="pi wz flash "><img src="images/wz.png" class="img"></div>
+            <div class="pi logo flash "><img src="images/footlogo.png" class="img"></div>
+            <div class="pi pr t3 flash "></div>
+            <p style="line-height:20px;text-align: center;position: absolute;top: 1060px;left: 50%;margin-left: -89px;">技术支持:百思互联</p>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+</body>
+</html>
